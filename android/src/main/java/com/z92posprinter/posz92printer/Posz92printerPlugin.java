@@ -144,14 +144,14 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             printBitmap(bitmap);
             result.success(true);
         }
-        else if(call.method.equals("printBarCode128")) {
-            final Map<String, Object> getData = call.arguments();
-            String text = (String) getData.get("text");
-            int height = (int) getData.get("height");
-            int width = (int) getData.get("width");
-            printBarCode128(text,height,width);
-            result.success(true);
-        }
+        // else if(call.method.equals("printBarCode128")) {
+        //     final Map<String, Object> getData = call.arguments();
+        //     String text = (String) getData.get("text");
+        //     int height = (int) getData.get("height");
+        //     int width = (int) getData.get("width");
+        //     printBarCode128(text,height,width);
+        //     result.success(true);
+        // }
          else {
             result.notImplemented();
         }
@@ -162,13 +162,13 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
         channel.setMethodCallHandler(null);
     }
 
-    private void printBarCode128(String barcodeString, int height, int width) {
-        int printStatus = mPrinter.getPrinterStatus();
-        if (printStatus != SdkResult.SDK_PRN_STATUS_PAPEROUT) {
-            mPrinter.setPrintAppendBarCode(activity.getApplicationContext(), barcodeString, height, width, true, Layout.Alignment.ALIGN_CENTER, BarcodeFormat.CODE_128);
-            printStatus = mPrinter.setPrintStart();
-        }
-    }
+    // private void printBarCode128(String barcodeString, int height, int width) {
+    //     int printStatus = mPrinter.getPrinterStatus();
+    //     if (printStatus != SdkResult.SDK_PRN_STATUS_PAPEROUT) {
+    //         mPrinter.setPrintAppendBarCode(activity.getApplicationContext(), barcodeString, height, width, true, Layout.Alignment.ALIGN_CENTER, BarcodeFormat.CODE_128);
+    //         printStatus = mPrinter.setPrintStart();
+    //     }
+    // }
 
 
     @Override
