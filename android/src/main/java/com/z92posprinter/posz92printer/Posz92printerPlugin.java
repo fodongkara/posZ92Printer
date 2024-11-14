@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import com.google.zxing.BarcodeFormat;
 import com.zcs.sdk.DriverManager;
 import com.zcs.sdk.Printer;
 import com.zcs.sdk.SdkResult;
@@ -115,15 +114,17 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
                     leftText, leftSize, middleText, middleSize, rightText, rightSize, fontSize, isBold
             );
             result.success(true);
-        } else if (call.method.equals("printQrCode")) {
-            final Map<String, Object> getData = call.arguments();
+        }
+        //  else if (call.method.equals("printQrCode")) {
+        //     final Map<String, Object> getData = call.arguments();
 
-            String qrCode = (String) getData.get("text");
-            int height = (int) getData.get("height");
-            int width = (int) getData.get("width");
-            printQRCode(qrCode, height, width);
-            result.success(true);
-        } else if (call.method.equals("printLine")) {
+        //     String qrCode = (String) getData.get("text");
+        //     int height = (int) getData.get("height");
+        //     int width = (int) getData.get("width");
+        //     printQRCode(qrCode, height, width);
+        //     result.success(true);
+        // } 
+        else if (call.method.equals("printLine")) {
             final Map<String, Object> getData = call.arguments();
             String lineStyle = (String) getData.get("lineStyle");
             int lineSize = (int) getData.get("lineSize");
