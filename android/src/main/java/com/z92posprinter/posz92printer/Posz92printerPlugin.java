@@ -279,7 +279,9 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             }
                         int colsWidth[] = new int[] { leftSize, rightSize};
             String item[] = new String[]{leftText,rightText};
-            mPrinter.setPrintAppendStrings(item, colsWidth, format);
+                                    PrnStrFormat formats[] = new PrnStrFormat[] {format, format};
+
+            mPrinter.setPrintAppendStrings(item, colsWidth, formats);
 
            
 
@@ -315,7 +317,9 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             }
                       int colsWidth[] = new int[] { leftSize, middleSize,rightSize};
             String item[] = new String[]{leftText,middleText ,rightText};
-            mPrinter.setPrintAppendStrings(item, colsWidth, format);
+                        PrnStrFormat formats[] = new PrnStrFormat[] {format, format, format};
+
+            mPrinter.setPrintAppendStrings(item, colsWidth, formats);
             mPrinter.setPrintStart();
             return true;
         } catch (Exception e) {
