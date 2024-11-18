@@ -308,16 +308,22 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
         try {
             PrnStrFormat format = new PrnStrFormat();
             format.setFont(PrnTextFont.SANS_SERIF);
-            format.setAli(Layout.Alignment.ALIGN_NORMAL);
-
-            if (isBold) {
-                format.setStyle(PrnTextStyle.BOLD);
-            } else {
-                format.setStyle(PrnTextStyle.NORMAL);
-            }
+            format.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+                PrnStrFormat format2 = new PrnStrFormat();
+            format2.setFont(PrnTextFont.SANS_SERIF);
+            format2.setAli(Layout.Alignment.ALIGN_CENTER);
+                  PrnStrFormat format3 = new PrnStrFormat();
+            format3.setFont(PrnTextFont.SANS_SERIF);
+            format3.setAli(Layout.Alignment.ALIGN_NORMAL);
+//ALIGN_OPPOSITE
+            // if (isBold) {
+            //     format.setStyle(PrnTextStyle.BOLD);
+            // } else {
+            //     format.setStyle(PrnTextStyle.NORMAL);
+            // }
                       int colsWidth[] = new int[] { leftSize, middleSize,rightSize};
             String item[] = new String[]{leftText,middleText ,rightText};
-                        PrnStrFormat formats[] = new PrnStrFormat[] {format, format, format};
+                        PrnStrFormat formats[] = new PrnStrFormat[] {format, format2, format3};
 
             mPrinter.setPrintAppendStrings(item, colsWidth, formats);
             mPrinter.setPrintStart();
