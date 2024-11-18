@@ -277,7 +277,11 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             } else {
                 format.setStyle(PrnTextStyle.NORMAL);
             }
-            mPrinter.setPrintAppendString(String.format("%-" + leftSize + "s" + "%" + rightSize + "s", leftText, rightText), format);
+                        int colsWidth[] = new int[] { leftSize, rightSize};
+            String item[] = new String[]{leftText,rightText};
+            mPrinter.setPrintAppendStrings(item, colsWidth, format);
+
+           
 
             mPrinter.setPrintStart();
             return true;
@@ -309,20 +313,9 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             } else {
                 format.setStyle(PrnTextStyle.NORMAL);
             }
-            String formattedString = String.format("%" + middleSize + "s", middleText);
-            int sideSize = 0;
-            if(leftText.length() >= rightText.length()){
-                sideSize = leftText.length();
-            } else {
-                sideSize = rightText.length();
-            }
-            int padding = (middleSize - middleText.length()) / 2;
-            String formatString = "%" + padding + "s%s%" + padding + "s";
-            String s = String.format(formatString, "", middleText, "");
-
-            Log.d("Debug", "print3Column: "+s.length() + " :: "+s.replace("  ","--"));
-            mPrinter.setPrintAppendString(String.format("%-" + leftSize + "s"  + s + "%" + rightSize + "s %n", leftText, rightText), format);
-
+                      int colsWidth[] = new int[] { leftSize, middleSize,rightSize};
+            String item[] = new String[]{leftText,middleText ,rightText};
+            mPrinter.setPrintAppendStrings(item, colsWidth, format);
             mPrinter.setPrintStart();
             return true;
         } catch (Exception e) {
