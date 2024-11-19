@@ -96,8 +96,12 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             int fontSize = (int) getData.get("fontSize");
             int leftSize = (int) getData.get("leftTextSize");
             int rightSize = (int) getData.get("rightTextSize");
+            int leftAlign = (int) getData.get("leftAlign");
+            int rightAlign = (int) getData.get("rightAlign");
+
+            
             print2Column(
-                    leftText, leftSize, rightText, rightSize, fontSize, isBold
+                    leftText, leftSize, rightText, rightSize, fontSize, isBold,leftAlign,rightAlign
             );
             result.success(true);
         } else if (call.method.equals("print3Column")) {
@@ -110,8 +114,13 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
             int leftSize = (int) getData.get("leftTextSize");
             int middleSize = (int) getData.get("centerTextSize");
             int rightSize = (int) getData.get("rightTextSize");
+            int leftAlign = (int) getData.get("leftAlign");
+            int rightAlign = (int) getData.get("rightAlign");
+            int centerAlign = (int) getData.get("centerAlign");
+
+          
             print3Column(
-                    leftText, leftSize, middleText, middleSize, rightText, rightSize, fontSize, isBold
+                    leftText, leftSize, middleText, middleSize, rightText, rightSize, fontSize, isBold,leftAlign,rightAlign,centerAlign
             );
             result.success(true);
         }
@@ -266,20 +275,38 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
 
 
     // print 2 column
-    public boolean print2Column(String leftText, int leftSize, String rightText, int rightSize, int fontSize, boolean isBold) {
+    public boolean print2Column(String leftText, int leftSize, String rightText, int rightSize, int fontSize, boolean isBold,int leftAlign,int rightAlign) {
         try {
             PrnStrFormat format = new PrnStrFormat();
-            format.setFont(PrnTextFont.SANS_SERIF);
-            format.setAli(Layout.Alignment.ALIGN_NORMAL);
-
-            if (isBold) {
-                format.setStyle(PrnTextStyle.BOLD);
+            format.setFont(PrnTextFont.MONOSPACE);
+            // format.setAli(Layout.Alignment.ALIGN_NORMAL);
+  if (leftAlign == 0) {
+                format.setAli(Layout.Alignment.ALIGN_CENTER);
+            } else if (leftAlign == 1) {
+                format.setAli(Layout.Alignment.ALIGN_NORMAL);
             } else {
-                format.setStyle(PrnTextStyle.NORMAL);
+                format.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+            }
+
+    PrnStrFormat format2 = new PrnStrFormat();
+            format2.setFont(PrnTextFont.MONOSPACE);
+            // format2.setAli(Layout.Alignment.ALIGN_NORMAL);
+            // if (isBold) {
+            //     format.setStyle(PrnTextStyle.BOLD);
+            // } else {
+            //     format.setStyle(PrnTextStyle.NORMAL);
+            // }
+
+ if (rightAlign == 0) {
+                format2.setAli(Layout.Alignment.ALIGN_CENTER);
+            } else if (rightAlign == 1) {
+                format2.setAli(Layout.Alignment.ALIGN_NORMAL);
+            } else {
+                format2.setAli(Layout.Alignment.ALIGN_OPPOSITE);
             }
                         int colsWidth[] = new int[] { leftSize, rightSize};
             String item[] = new String[]{leftText,rightText};
-                                    PrnStrFormat formats[] = new PrnStrFormat[] {format, format};
+                                    PrnStrFormat formats[] = new PrnStrFormat[] {format, format2};
 
             mPrinter.setPrintAppendStrings(item, colsWidth, formats);
 
@@ -304,17 +331,42 @@ public class Posz92printerPlugin implements FlutterPlugin, MethodCallHandler, Ac
     }
 
     // print 3 column
-    public boolean print3Column(String leftText, int leftSize, String middleText, int middleSize, String rightText, int rightSize, int fontSize, boolean isBold) {
+    public boolean print3Column(String leftText, int leftSize, String middleText, int middleSize, String rightText, int rightSize, int fontSize, boolean isBold,int leftAlign,int rightAlign,int centerAlign) {
         try {
             PrnStrFormat format = new PrnStrFormat();
-            format.setFont(PrnTextFont.SANS_SERIF);
-            format.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+            format.setFont(PrnTextFont.MONOSPACE);
+            // format.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+ if (leftAlign == 0) {
+                format.setAli(Layout.Alignment.ALIGN_CENTER);
+            } else if (leftAlign == 1) {
+                format.setAli(Layout.Alignment.ALIGN_NORMAL);
+            } else {
+                format.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+            }
+
                 PrnStrFormat format2 = new PrnStrFormat();
-            format2.setFont(PrnTextFont.SANS_SERIF);
-            format2.setAli(Layout.Alignment.ALIGN_CENTER);
+            format2.setFont(PrnTextFont.MONOSPACE);
+            // format2.setAli(Layout.Alignment.ALIGN_CENTER);
+
+ if (centerAlign == 0) {
+                format2.setAli(Layout.Alignment.ALIGN_CENTER);
+            } else if (centerAlign == 1) {
+                format2.setAli(Layout.Alignment.ALIGN_NORMAL);
+            } else {
+                format2.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+            }
+
+
                   PrnStrFormat format3 = new PrnStrFormat();
-            format3.setFont(PrnTextFont.SANS_SERIF);
-            format3.setAli(Layout.Alignment.ALIGN_NORMAL);
+            format3.setFont(PrnTextFont.MONOSPACE);
+            // format3.setAli(Layout.Alignment.ALIGN_NORMAL);
+             if (rightAlign == 0) {
+                format3.setAli(Layout.Alignment.ALIGN_CENTER);
+            } else if (rightAlign == 1) {
+                format3.setAli(Layout.Alignment.ALIGN_NORMAL);
+            } else {
+                format3.setAli(Layout.Alignment.ALIGN_OPPOSITE);
+            }
 //ALIGN_OPPOSITE
             // if (isBold) {
             //     format.setStyle(PrnTextStyle.BOLD);

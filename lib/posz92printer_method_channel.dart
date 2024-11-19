@@ -26,9 +26,10 @@ class MethodChannelPosz92printer extends Posz92printerPlatform {
       "fontSize": fontSize,
     });
   }
-   @override
-  Future<bool?> printBarCode128({
-    required String text, int width = 100, int height = 100}) async {
+
+  @override
+  Future<bool?> printBarCode128(
+      {required String text, int width = 100, int height = 100}) async {
     return await methodChannel.invokeMethod<bool>('printBarCode128', {
       'text': text,
       "width": width,
@@ -45,6 +46,8 @@ class MethodChannelPosz92printer extends Posz92printerPlatform {
     int spaceRight = 0,
     bool isBold = false,
     int fontSize = 30,
+    AlignmentPrint leftAlign = AlignmentPrint.left,
+    AlignmentPrint rightAlign = AlignmentPrint.right,
   }) async {
     return await methodChannel.invokeMethod<bool>('print2Column', {
       'leftText': textLeft,
@@ -53,6 +56,8 @@ class MethodChannelPosz92printer extends Posz92printerPlatform {
       "rightTextSize": spaceRight,
       "isBold": isBold,
       "fontSize": fontSize,
+      "leftAlign": leftAlign.index,
+      "rightAlign": rightAlign.index,
     });
   }
 
@@ -67,6 +72,9 @@ class MethodChannelPosz92printer extends Posz92printerPlatform {
     int spaceRight = 0,
     bool isBold = false,
     int fontSize = 30,
+    AlignmentPrint leftAlign = AlignmentPrint.left,
+    AlignmentPrint rightAlign = AlignmentPrint.right,
+    AlignmentPrint centerAlign = AlignmentPrint.center,
   }) async {
     return await methodChannel.invokeMethod<bool>('print3Column', {
       'leftText': textLeft,
@@ -77,6 +85,9 @@ class MethodChannelPosz92printer extends Posz92printerPlatform {
       "rightTextSize": spaceRight,
       "isBold": isBold,
       "fontSize": fontSize,
+      "leftAlign": leftAlign.index,
+      "rightAlign": rightAlign.index,
+      "centerAlign": centerAlign.index,
     });
   }
 
