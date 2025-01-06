@@ -4,8 +4,6 @@ import 'package:posz92printer/posz92printer.dart';
 
 import 'posz92printer_platform_interface.dart';
 
-MethodChannel? _channel;
-
 /// An implementation of [Posz92printerPlatform] that uses method channels.
 class MethodChannelPosz92printer extends Posz92printerPlatform {
   /// The method channel used to interact with the native platform.

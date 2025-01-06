@@ -22,6 +22,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace "com.z92posprinter.posz92printer"
+
     compileSdkVersion 34
 
     compileOptions {
